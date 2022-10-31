@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAllUsers, updateCurrentUser } from "../../reducers/userReducer";
-import { FETCH_USERS } from "./services";
+import { FETCH_USERS } from "../../services/services";
 
 import { Button } from "antd";
 
@@ -19,12 +19,17 @@ const Users = () => {
   }, []);
 
   const fetchUsers = async () => {
-    let users = await FETCH_USERS();
-    users = users.map((item) => ({
-      key: item.id,
-      ...item,
-    }));
-    dispatch(updateAllUsers(users));
+    let users;
+    try {
+      users = await FETCH_USERS();
+      users = users.map((item) => ({
+        key: item.id,
+        ...item,
+      }));
+      dispatch(updateAllUsers(users));
+    } catch {
+      navigate("/error/There was some problem Fetching Data/Try Again/users");
+    }
   };
 
   const onClickHandler = (data) => {

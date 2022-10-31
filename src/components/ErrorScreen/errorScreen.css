@@ -1,0 +1,21 @@
+.error-screen-container {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-screen-container h1 {
+    font-size: 4rem;
+    color: #666;
+    margin: 0;
+}
+
+.error-screen-container h2 {
+    color: #444;
+}
+
+.error-screen-container Button {
+   margin: 20px 0px;
+}

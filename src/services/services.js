@@ -1,4 +1,4 @@
-import { users } from "./api";
+import { users } from "../api/api";
 
 const FETCH_USERS = async () => {
   const data = await fetch(users).then((res) => res.json());

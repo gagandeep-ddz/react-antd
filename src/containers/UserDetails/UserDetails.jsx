@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Table from "../../components/Table/Table";
@@ -11,10 +12,30 @@ const UserDetails = () => {
 
   const userDetail = useFetchUserDetail(user.firstName, user.birthDate);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userDetail) {
+      navigate(
+        "/error/Oh Crap! The state is not Persisted/Fetch User Again/users"
+      );
+    }
+  }, []);
+
   return (
     <>
-      <Table columns={selectedUserColumns} data={[user]} />
-      <Table columns={userDetailColumns} data={[userDetail]} />
+      <Table
+        columns={selectedUserColumns}
+        data={[user]}
+        isDownloadable={false}
+        isPrintable={false}
+      />
+      <Table
+        columns={userDetailColumns}
+        data={[userDetail]}
+        isDownloadable={false}
+        isPrintable={false}
+      />
     </>
   );
 };
