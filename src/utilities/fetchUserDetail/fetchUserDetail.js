@@ -7,8 +7,12 @@ const useFetchUserDetail = (firstName, dob) => {
     filteredUser = allUsers.filter(
       (obj) => obj.firstName == firstName && obj.birthDate == dob
     );
-
-    return filteredUser[0].address;
+    let address = filteredUser[0].address;
+    address = {
+      key: 0,
+      ...address,
+    };
+    return address;
   } else {
     return null;
   }
